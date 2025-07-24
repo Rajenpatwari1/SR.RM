@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sr. Relationship Manager - OnePaper Research Analysts</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Inter for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for specific elements not easily achievable with direct Tailwind classes */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Header banner background image overlay */
+        .header-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            opacity: 0.08;
+        }
+
+        /* Detail card bottom border */
+        .detail-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #000000, #333333); /* Blacker gradient */
+        }
+
+        /* Job description box left border */
+        .job-description::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #000000, #fbcfe8); /* Baby pink */
+        }
+
+        /* Career path container background image overlay */
+        .career-path-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            opacity: 0.05;
+        }
+
+        /* Path arrow for career path */
+        .path-arrow {
+            position: absolute;
+            top: 50px;
+            font-size: 40px;
+            color: #fbcfe8; /* Baby pink */
+            z-index: 1;
+        }
+
+        /* CTA section top border */
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #000000, #fbcfe8); /* Baby pink */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 p-5 min-h-screen flex justify-center items-center">
+    <div class="container max-w-5xl w-full bg-gray-800 rounded-3xl overflow-hidden shadow-2xl relative">
+        <!-- Header Banner Section -->
+        <div class="header-banner bg-gradient-to-br from-black to-gray-700 p-12 text-center relative overflow-hidden">
+            <div class="logo-section flex justify-center items-center mb-5 z-10">
+                <div class="text-pink-200 text-5xl font-extrabold tracking-wider shadow-lg font-['Montserrat']">ONEPAPER</div>
+            </div>
+            <div class="tagline text-pink-200 text-xl font-semibold bg-black bg-opacity-60 inline-block px-8 py-3 rounded-full mt-4 border border-pink-200 border-opacity-30 z-10">
+                SEBI Certified Research Analyst
+            </div>
+            <div class="position-badge bg-pink-400 text-gray-900 px-10 py-4 font-bold text-3xl text-center mt-8 rounded-xl inline-block shadow-xl z-10 border-2 border-white border-opacity-50">
+                <i class="fas fa-briefcase mr-3"></i> Sr. Relationship Manager
+            </div>
+        </div>
+        
+        <!-- Main Content Section -->
+        <div class="main-content p-12">
+            <!-- About OnePaper Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-building mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> About OnePaper
+                </h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-300">
+                    Founded in <strong class="text-white">2020</strong>, OnePaper is an independent, privately-owned research and advisory firm in the financial services sector. We're recognized for our commitment to integrity, strategic partnerships, and exceptional service delivery that drives client success.
+                </p>
+                <p class="text-lg font-semibold text-gray-300">
+                    <i class="fas fa-globe mr-2 text-pink-400"></i> <a href="https://www.onepaper.in" class="text-pink-200 hover:text-pink-400 underline transition-colors duration-300">www.onepaper.in</a>
+                </p>
+            </div>
+            
+            <!-- Position Details Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-info-circle mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Position Details
+                </h2>
+                <div class="details-grid grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+                    <div class="detail-card bg-gray-700 border border-pink-400 rounded-xl p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
+                        <h4 class="text-gray-100 mb-5 text-2xl flex items-center justify-center font-['Montserrat']">
+                            <i class="fas fa-clock mr-3 text-pink-200 text-3xl"></i> Shift Timing
+                        </h4>
+                        <p class="text-xl font-medium text-gray-300">9:00 AM – 6:00 PM</p>
+                    </div>
+                    <div class="detail-card bg-gray-700 border border-pink-400 rounded-xl p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
+                        <h4 class="text-gray-100 mb-5 text-2xl flex items-center justify-center font-['Montserrat']">
+                            <i class="fas fa-calendar-alt mr-3 text-pink-200 text-3xl"></i> Joining
+                        </h4>
+                        <p class="text-xl font-medium text-gray-300">Immediate</p>
+                    </div>
+                </div>
+                
+                <div class="location-section bg-gray-700 rounded-xl p-8 my-10 shadow-lg border-l-4 border-pink-400 flex flex-col md:flex-row items-center gap-8">
+                    <div class="location-icon bg-gray-900 text-pink-400 w-20 h-20 rounded-full flex items-center justify-center text-4xl flex-shrink-0">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="location-details text-center md:text-left">
+                        <h3 class="text-gray-100 text-2xl mb-4 font-['Montserrat']">Our Office Location</h3>
+                        <p class="text-lg mb-4 text-gray-300">JP Nagar 2nd Phase, Bangalore 560078</p>
+                        <a href="https://maps.app.goo.gl/AvSCPryMM1MWafiK8" class="location-link inline-block bg-pink-400 text-gray-900 px-6 py-3 rounded-full no-underline font-semibold transition-all duration-300 hover:bg-pink-500 hover:translate-y-[-3px]" target="_blank">
+                            <i class="fas fa-map-marker-alt mr-2"></i> View on Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Responsibilities Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-tasks mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Key Responsibilities
+                </h2>
+                <div class="responsibilities-grid grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-phone-alt text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Proactively engage with potential clients via calls to generate interest</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-handshake text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Understand client needs and drive conversions through consultative selling</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-arrow-alt-circle-up text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Upsell premium services to existing customers to maximize revenue</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-users text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Build and maintain long-term customer relationships with regular market insights</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-database text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Maintain accurate records of client interactions in CRM systems</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-comments text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Collaborate with marketing and research teams to improve sales strategy</p>
+                    </div>
+                    <div class="responsibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-bullseye text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Consistently meet and exceed monthly sales targets and KPIs</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Required Skills Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-star mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Required Skills
+                </h2>
+                <div class="highlight-box bg-gray-700 rounded-xl p-10 my-10 shadow-lg border-l-4 border-pink-400">
+                    <ul class="list-none pl-8 my-6">
+                        <li class="mb-4 leading-relaxed text-lg relative pl-6 text-gray-300">Excellent communication in English and fluency in either two regional languages or Hindi</li>
+                        <li class="mb-4 leading-relaxed text-lg relative pl-6 text-gray-300">Ability to perform under pressure and meet targets</li>
+                        <li class="mb-4 leading-relaxed text-lg relative pl-6 text-gray-300">Strong customer orientation with attention to detail</li>
+                        <li class="mb-4 leading-relaxed text-lg relative pl-6 text-gray-300">Creative problem-solving and a proactive approach</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Career Growth Path Section -->
+            <div class="career-path-container bg-gradient-to-br from-black to-gray-700 p-12 rounded-2xl my-16 relative overflow-hidden shadow-2xl">
+                <h2 class="career-path-title relative z-10 text-white text-center mb-12 text-4xl font-['Montserrat']">
+                    <i class="fas fa-chart-line mr-4 text-pink-400"></i> Career Growth Path
+                </h2>
+                <div class="career-path flex flex-col md:flex-row justify-between relative z-10 gap-8 md:gap-4">
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">1</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Relationship Manager</div>
+                    </div>
+                    
+                    <div class="path-arrow hidden md:block self-center">➤</div>
+                    <div class="path-arrow block md:hidden rotate-90 self-center">➤</div>
+                    
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">2</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Sr. Relationship Manager</div>
+                    </div>
+                    
+                    <div class="path-arrow hidden md:block self-center">➤</div>
+                    <div class="path-arrow block md:hidden rotate-90 self-center">➤</div>
+                    
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">3</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Assistant Team Leader</div>
+                    </div>
+                    
+                    <div class="path-arrow hidden md:block self-center">➤</div>
+                    <div class="path-arrow block md:hidden rotate-90 self-center">➤</div>
+                    
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">4</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Team Leader</div>
+                    </div>
+
+                    <div class="path-arrow hidden md:block self-center">➤</div>
+                    <div class="path-arrow block md:hidden rotate-90 self-center">➤</div>
+                    
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">5</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Manager</div>
+                    </div>
+
+                    <div class="path-arrow hidden md:block self-center">➤</div>
+                    <div class="path-arrow block md:hidden rotate-90 self-center">➤</div>
+                    
+                    <div class="path-step text-center relative z-10 flex flex-col items-center flex-1">
+                        <div class="step-circle w-24 h-24 bg-pink-400 rounded-full flex items-center justify-center text-gray-900 font-extrabold text-3xl mb-6 border-4 border-white border-opacity-80 shadow-xl">6</div>
+                        <div class="step-title font-semibold text-white bg-black bg-opacity-60 px-6 py-3 rounded-full inline-block text-lg font-['Montserrat']">Senior Manager</div>
+                    </div>
+                </div>
+                <p class="text-center mt-10 text-lg italic text-pink-200 relative z-10">
+                    "At OnePaper, we believe in recognizing talent and providing accelerated career progression for high performers."
+                </p>
+            </div>
+            
+            <!-- Why Join OnePaper Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-rocket mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Why Join OnePaper?
+                </h2>
+                <div class="details-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10">
+                    <div class="detail-card bg-gray-700 border border-pink-400 rounded-xl p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
+                        <h4 class="text-gray-100 mb-5 text-2xl flex items-center justify-center font-['Montserrat']">
+                            <i class="fas fa-graduation-cap mr-3 text-pink-200 text-3xl"></i> Professional Training
+                        </h4>
+                        <p class="text-xl font-medium text-gray-300">Comprehensive market education from NISM-certified analysts</p>
+                    </div>
+                    <div class="detail-card bg-gray-700 border border-pink-400 rounded-xl p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
+                        <h4 class="text-gray-100 mb-5 text-2xl flex items-center justify-center font-['Montserrat']">
+                            <i class="fas fa-bolt mr-3 text-pink-200 text-3xl"></i> Energetic Environment
+                        </h4>
+                        <p class="text-xl font-medium text-gray-300">Dynamic workspace with passionate professionals</p>
+                    </div>
+                    <div class="detail-card bg-gray-700 border border-pink-400 rounded-xl p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
+                        <h4 class="text-gray-100 mb-5 text-2xl flex items-center justify-center font-['Montserrat']">
+                            <i class="fas fa-trophy mr-3 text-pink-200 text-3xl"></i> Top Incentives
+                        </h4>
+                        <p class="text-xl font-medium text-gray-300">Industry-leading rewards for high performers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TradingView Widget Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-chart-area mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Live Market Insights
+                </h2>
+                <div class="tradingview-widget-container my-12 rounded-xl overflow-hidden shadow-lg border border-pink-400">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                    {"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"FX_IDC:EURUSD","title":"EUR/USD"},{"proName":"BITSTAMP:BTCUSD","title":"Bitcoin"},{"proName":"BITSTAMP:ETHUSD","title":"Ethereum"},{"description":"NIFTY 50","proName":"NSE:NIFTY"},{"description":"Sensex","proName":"BSE:SENSEX"}],"showSymbolLogo":true,"isTransparent":false,"colorTheme":"dark","locale":"en"}
+                    </script>
+                </div>
+                <p class="text-base text-center text-gray-400">
+                    Powered by TradingView.
+                </p>
+            </div>
+            <!-- End TradingView Widget Section -->
+            
+            <!-- Eligibility Section -->
+            <div class="section mb-12 relative">
+                <h2 class="text-gray-100 border-b-4 border-pink-400 pb-4 mb-8 text-4xl flex items-center font-['Montserrat']">
+                    <i class="fas fa-graduation-cap mr-4 text-gray-900 bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md"></i> Eligibility
+                </h2>
+                <div class="eligibility-grid grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+                    <div class="eligibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-user-graduate text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Graduate or Postgraduate in any discipline</p>
+                    </div>
+                    <div class="eligibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-seedling text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Fresh graduates are welcome if you have a strong learning attitude</p>
+                    </div>
+                    <div class="eligibility-item bg-gray-700 border border-pink-400 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] flex items-start">
+                        <i class="fas fa-calendar-check text-pink-200 text-2xl mr-4 mt-1 flex-shrink-0"></i>
+                        <p class="text-lg leading-relaxed text-gray-300">Immediate joining required</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action Section -->
+            <div class="cta-section text-center p-12 bg-gradient-to-br from-black to-gray-700 rounded-2xl my-16 shadow-xl relative overflow-hidden">
+                <div class="absolute inset-0 bg-pattern opacity-10"></div>
+                <h2 class="relative z-10 text-white text-4xl mb-8 font-['Montserrat']">
+                    <i class="fas fa-paper-plane mr-4 text-white bg-pink-400 w-14 h-14 rounded-full flex items-center justify-center shadow-md inline-flex"></i> Ready to Join Our Team?
+                </h2>
+                <div class="contact-info bg-gray-700 bg-opacity-90 border-2 border-pink-400 p-8 rounded-xl my-8 font-semibold text-xl text-gray-100 leading-relaxed relative z-10 shadow-lg">
+                    <p class="text-2xl font-bold text-white mb-4">Send your resume to:</p>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                        <a href="mailto:rajen.patwari@onepaper.in" class="email-link bg-pink-400 text-gray-900 px-6 py-3 rounded-lg inline-flex items-center no-underline font-bold transition-all duration-300 hover:bg-pink-500 hover:shadow-md">
+                            <i class="fas fa-envelope mr-2"></i> rajen.patwari@onepaper.in
+                        </a>
+                        <span class="text-gray-400 hidden md:inline-block">or</span>
+                        <a href="mailto:hr@onepaper.in" class="email-link bg-pink-400 text-gray-900 px-6 py-3 rounded-lg inline-flex items-center no-underline font-bold transition-all duration-300 hover:bg-pink-500 hover:shadow-md">
+                            <i class="fas fa-envelope mr-2"></i> hr@onepaper.in
+                        </a>
+                    </div>
+                </div>
+                <a href="https://wa.me/918086981567" class="whatsapp-button inline-flex items-center bg-green-500 text-white px-10 py-4 rounded-full font-bold text-2xl no-underline mt-6 shadow-lg transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl hover:bg-green-600 relative z-10">
+                    <i class="fab fa-whatsapp mr-3 text-3xl"></i> Message Us on WhatsApp
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <footer class="text-center p-8 bg-black text-gray-300 text-lg border-t border-pink-400 border-opacity-20">
+            <p>OnePaper Research Analysts Private Limited | <a href="https://www.onepaper.in" class="text-pink-200 no-underline border-b border-pink-200 border-opacity-50 transition-colors duration-300 font-semibold hover:text-white hover:border-white">www.onepaper.in</a></p>
+            <p class="mt-4 text-base">Made by Rajen Patwari</p>
+        </footer>
+    </div>
+</body>
+</html>
