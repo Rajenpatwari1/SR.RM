@@ -107,6 +107,11 @@
             100% { transform: scale(1); }
         }
 
+        @keyframes popInSlow {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         /* Apply animations on scroll */
         .animate-on-scroll {
             opacity: 0;
@@ -126,6 +131,10 @@
         .animate-on-scroll.is-visible .responsibility-item i {
             animation: checkmarkAnim 0.5s ease-out forwards;
         }
+        .animate-on-scroll.is-visible .section-header-decoration {
+            animation: popInSlow 0.8s ease-out forwards;
+        }
+
 
         /* Three.js canvas styling */
         #three-canvas {
@@ -369,7 +378,7 @@
         }
 
         .section-card .detail-card:hover {
-            background: linear-gradient(to bottom, #4a505a, #3a404a); /* Darker gradient on hover */
+            background: linear-gradient(to bottom, #4a504a, #3a404a); /* Darker gradient on hover */
             transform: translateY(-5px); /* More noticeable lift */
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
             border-color: rgba(251, 191, 232, 0.7); /* More prominent pink border on hover */
@@ -427,7 +436,7 @@
             transition: all 0.3s ease-in-out;
         }
         .why-join-list li:hover {
-            background: linear-gradient(to right, #4a505a, #3a404a);
+            background: linear-gradient(to right, #4a504a, #3a404a);
             transform: translateX(10px); /* More pronounced slide */
             border-color: rgba(251, 191, 232, 0.7);
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
@@ -446,7 +455,7 @@
             transition: all 0.3s ease-in-out;
         }
         .eligibility-list li:hover {
-            background: linear-gradient(to right, #4a505a, #3a404a);
+            background: linear-gradient(to right, #4a504a, #3a404a);
             transform: translateX(10px); /* More pronounced slide */
             border-color: rgba(167, 139, 250, 0.7);
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
@@ -474,424 +483,387 @@
     </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
-
     <!-- TradingView Widget BEGIN - Moved to the very top and made sticky -->
     <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
         {
-        "symbols": [
+            "symbols": [
             {
-            "proName": "FOREXCOM:SPXUSD",
-            "title": "S&P 500"
+                "proName": "FOREXCOM:SPXUSD",
+                "title": "S&P 500"
             },
             {
-            "proName": "FOREXCOM:NSXUSD",
-            "title": "US 100"
+                "proName": "FOREXCOM:NSXUSD",
+                "title": "US 100"
             },
             {
-            "proName": "FX_IDC:EURUSD",
-            "title": "EUR to USD"
+                "proName": "FX_IDC:EURUSD",
+                "title": "EUR to USD"
             },
             {
-            "proName": "BITSTAMP:BTCUSD",
-            "title": "Bitcoin"
+                "proName": "BITSTAMP:BTCUSD",
+                "title": "Bitcoin"
             },
             {
-            "proName": "BITSTAMP:ETHUSD",
-            "title": "Ethereum"
+                "proName": "BITSTAMP:ETHUSD",
+                "title": "Ethereum"
             },
             {
-            "description": "NIFTY 50",
-            "proName": "NSE:NIFTY"
+                "description": "NIFTY 50",
+                "proName": "NSE:NIFTY"
             },
             {
-            "description": "BANKNIFTY",
-            "proName": "NSE:BANKNIFTY"
+                "description": "BANK NIFTY",
+                "proName": "NSE:BANKNIFTY"
             }
-        ],
-        "showSymbolLogo": true,
-        "is=live": true,
-        "colorTheme": "dark",
-        "locale": "en"
+            ],
+            "showSymbolLogo": true,
+            "theme": "dark",
+            "locale": "en"
         }
         </script>
     </div>
     <!-- TradingView Widget END -->
 
-    <!-- Main content wrapper to ensure horizontal centering -->
-    <div class="flex justify-center w-full">
-        <div class="container max-w-5xl w-full bg-gray-800 rounded-3xl overflow-hidden shadow-2xl relative my-8 sm:my-12">
-
-            <!-- Header Banner Section (Page 1) -->
-            <div class="header-banner bg-gradient-to-br from-black to-gray-700 p-6 sm:p-8 lg:p-12 text-center relative overflow-hidden">
-                <canvas id="three-canvas"></canvas> <!-- Three.js canvas for 3D visuals -->
-                <div class="relative z-10">
-                    <div class="logo-section flex justify-center items-center mb-5">
-                        <!-- Simulating Logo.svg with text for demonstration -->
-                        <div class="text-pink-200 text-4xl sm:text-5xl font-extrabold tracking-wider shadow-lg font-['Montserrat']">ONEPAPER</div>
-                    </div>
-                    <div class="tagline text-pink-200 text-base sm:text-xl font-semibold bg-black bg-opacity-60 inline-block px-6 py-2 sm:px-8 sm:py-3 rounded-full mt-4 border border-pink-200 border-opacity-30">
-                        SEBI Registered Research Analyst
-                    </div>
-                    <div class="position-badge bg-pink-400 text-gray-900 px-8 py-3 sm:px-10 sm:py-4 font-bold text-2xl sm:text-3xl text-center mt-6 sm:mt-8 rounded-xl inline-block shadow-xl border-2 border-white border-opacity-50 animate-pulse">
-                        <i class="fas fa-briefcase mr-3"></i> Sr. Relationship Manager
-                    </div>
-                </div>
+    <!-- Header Banner Section -->
+    <header class="header-banner relative bg-gray-800 text-white py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <canvas id="three-canvas"></canvas>
+        <div class="relative z-10 max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 font-montserrat animate-fade-in">
+                Become a Sr.Relationship Manager <br class="hidden sm:inline"> at <span class="text-pink-300">OnePaper Research Analysts</span>
+            </h1>
+            <!-- Removed: <p class="text-lg sm:text-xl text-gray-300 mb-8 animate-fade-in animation-delay-200">
+                Shape the future of financial advisory with us.
+            </p> -->
+            <div class="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center animate-fade-in animation-delay-400">
+                <a href="#apply" class="bg-pink-400 hover:bg-pink-500 text-gray-900 font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                    Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <!-- Removed: <a href="#learn-more" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+                    Learn More <i class="fas fa-info-circle ml-2"></i>
+                </a> -->
             </div>
-
-            <!-- Main Content Section -->
-            <div class="main-content p-4 sm:p-6 lg:p-10">
-                <!-- About OnePaper Section (Page 1) -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll about-onepaper-section">
-                    <h2 class="text-gray-100 border-b-4 border-pink-400 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-building mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> About OnePaper
-                    </h2>
-                    <p class="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-gray-300">
-                        OnePaper Research Analysts Pvt. Ltd. Founded in 2020, we are a dedicated intraday stock research firm providing precise, real-time market analysis to help clients make smart, confident trading decisions. Our focus is on accuracy, speed, and continuous improvement in research capabilities.
-                    </p>
-                    <p class="text-base sm:text-lg font-semibold text-gray-300">
-                        <i class="fas fa-globe mr-2 text-pink-400"></i> <a href="https://www.onepaper.in" class="text-pink-200 hover:text-pink-400 underline transition-colors duration-300" target="_blank">www.onepaper.in</a>
-                    </p>
-                </div>
-
-                <!-- Position Details Section (Page 2) -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll section-card">
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-info-circle mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Position Details
-                    </h2>
-                    <div class="details-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 my-8 sm:my-10">
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-left transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center font-['Montserrat']">
-                                <i class="fas fa-clock mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl animate-bounce"></i> Shift Timing
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">9:00 AM – 6:00 PM</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-left transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center font-['Montserrat']">
-                                <i class="fas fa-calendar-alt mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl animate-bounce"></i> Joining
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Immediate</p>
-                        </div>
-                    </div>
-
-                    <div class="location-section rounded-xl p-6 sm:p-8 my-8 sm:my-10 shadow-lg border-l-4 flex flex-col md:flex-row items-center gap-6 sm:gap-8 animate-on-scroll">
-                        <div class="location-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center text-3xl sm:text-4xl flex-shrink-0 animate-pulse">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <div class="location-details text-center md:text-left">
-                            <h3 class="text-gray-100 text-xl sm:text-2xl mb-3 sm:mb-4 font-['Montserrat']">Our Office Location</h3>
-                            <p class="text-base sm:text-lg mb-3 sm:mb-4 text-gray-300">2nd Floor, Gajanana Towers, 219, 9th Cross Rd, JP Nagar, Bengaluru</p>
-                            <a href="https://maps.app.goo.gl/JHjKvfd56uRAT3tb8" class="location-link inline-block px-5 py-2 sm:px-6 sm:py-3 rounded-full no-underline font-semibold text-base sm:text-lg transition-all duration-300 hover:translate-y-[-3px]" target="_blank">
-                                <i class="fas fa-map-marker-alt mr-2"></i> View on Google Maps
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Key Responsibilities Section (Page 3) -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll section-card">
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-tasks mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Key Responsibilities
-                    </h2>
-                    <div class="details-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 my-6">
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-handshake mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Client Acquisition
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Call potential clients and generate interest in our services.</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-comments-dollar mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Consultative Sales
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Employ a consultative selling approach to understand client needs.</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-chart-line mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Service Upselling & CRM
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Upsell additional services and maintain client records in CRM.</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-people-arrows mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Cross-functional Collaboration
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Collaborate with marketing and research teams for client success.</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-bullseye mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Performance Targets
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Consistently meet and exceed monthly Key Performance Indicators.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Required Skills Section (Page 3) -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll section-card">
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-star mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Required Skills
-                    </h2>
-                    <div class="details-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 my-8 sm:my-10">
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 shadow-lg hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-comments mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Communication
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Excellent English & 2 regional languages</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-headset mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Customer Focus
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Customer-focused approach</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-bolt mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Pressure Handling
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Ability to perform under pressure</p>
-                        </div>
-                        <div class="detail-card rounded-xl p-6 sm:p-8 text-center transition-all duration-300 hover:translate-y-[-5px] hover:hover:shadow-xl relative overflow-hidden">
-                            <h4 class="text-gray-100 mb-4 sm:mb-5 text-xl sm:text-2xl flex items-center justify-center font-['Montserrat']">
-                                <i class="fas fa-lightbulb mr-2 sm:mr-3 text-pink-200 text-2xl sm:text-3xl"></i> Problem Solving
-                            </h4>
-                            <p class="text-lg sm:text-xl font-medium text-gray-300">Problem-solving mindset</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Career Growth Section (Re-added and Streamlined) -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll section-card">
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-chart-line mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Career Growth
-                    </h2>
-                    <p class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 text-gray-300 text-center">
-                        At OnePaper, we believe in recognizing talent and providing accelerated career progression for high performers.
-                    </p>
-                    <div class="career-path-container-new">
-                        <div class="career-path-steps-new">
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-user-tie"></i></span>
-                                <span>Relationship Manager</span>
-                            </div>
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-user-plus"></i></span>
-                                <span>Sr. RM</span>
-                            </div>
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-users"></i></span>
-                                <span>Team Leader</span>
-                            </div>
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-user-shield"></i></span>
-                                <span>Manager</span>
-                            </div>
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-globe-americas"></i></span>
-                                <span>Regional Manager</span>
-                            </div>
-                            <div class="career-step-new">
-                                <span class="icon-wrapper"><i class="fas fa-chess-queen"></i></span>
-                                <span>Management/Board Team</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Why Join OnePaper Section -->
-                <div class="section mb-10 sm:mb-16 relative animate-on-scroll section-card">
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-hand-holding-heart mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Why Join OnePaper?
-                    </h2>
-                    <ul class="list-none space-y-4 mb-8 sm:mb-12 why-join-list">
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-award mr-3 mt-1 flex-shrink-0"></i>
-                            <span>Training from NISM-certified experts</span>
-                        </li>
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-trophy mr-3 mt-1 flex-shrink-0"></i>
-                            <span>High-performing incentives</span>
-                        </li>
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-users-rays mr-3 mt-1 flex-shrink-0"></i>
-                            <span>Energetic team environment</span>
-                        </li>
-                    </ul>
-
-                    <h2 class="text-gray-100 pb-3 sm:pb-4 mb-6 sm:mb-8 text-3xl sm:text-4xl flex items-center font-['Montserrat']">
-                        <i class="fas fa-user-graduate mr-3 sm:mr-4 text-gray-900 bg-pink-400 w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-md text-2xl sm:text-3xl"></i> Eligibility
-                    </h2>
-                    <ul class="list-none space-y-4 mb-8 sm:mb-12 eligibility-list">
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-check-double mr-3 mt-1 flex-shrink-0"></i>
-                            <span>Any graduate/postgraduate</span>
-                        </li>
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-check-double mr-3 mt-1 flex-shrink-0"></i>
-                            <span>Freshers welcome</span>
-                        </li>
-                        <li class="flex items-start text-base sm:text-lg text-gray-300 animate-on-scroll">
-                            <i class="fas fa-check-double mr-3 mt-1 flex-shrink-0"></i>
-                            <span>No % criteria – learning mindset matters</span>
-                        </li>
-                    </ul>
-
-                    <div class="cta-section text-center py-8 sm:py-10 relative z-10">
-                        <h3 class="text-gray-100 text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 font-['Montserrat']">Ready to Join Our Team?</h3>
-                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-                            <a href="mailto:hr@onepaper.in" class="email-link bg-pink-400 text-gray-900 px-5 py-2 sm:px-6 sm:py-3 rounded-lg inline-flex items-center no-underline font-bold text-base sm:text-lg transition-all duration-300 hover:bg-pink-500 hover:shadow-md">
-                                <i class="fas fa-envelope mr-2"></i> Email Us
-                            </a>
-                            <a href="https://wa.me/918086981567?text=Hi%20HR,%20my%20name%20is%20___%20and%20I%20am%20interested%20in%20this%20role.%20I%20want%20to%20discuss%20more." class="whatsapp-button inline-flex items-center bg-green-500 text-white px-5 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-base sm:text-lg no-underline shadow-lg transition-all duration-300 hover:translate-y-[-3px] hover:shadow-xl hover:bg-green-600">
-                                <i class="fab fa-whatsapp mr-2"></i> WhatsApp Us
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Section -->
-            <footer class="text-center p-6 sm:p-8 bg-black text-gray-300 text-base sm:text-lg border-t border-pink-400 border-opacity-20">
-                <p>OnePaper Research Analysts Private Limited | <a href="https://www.onepaper.in" class="text-pink-200 hover:text-pink-400 underline" target="_blank">www.onepaper.in</a></p>
-                <p class="mt-2 text-gray-400 text-sm">Made by Rajen Patwari</p>
-            </footer>
-
         </div>
-    </div>
+    </header>
 
-    <!-- Three.js CDN -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- About OnePaper Section -->
+        <section id="about-onepaper" class="about-onepaper-section relative text-center mb-20 animate-on-scroll">
+            <div class="relative z-10">
+                <h2 class="text-4xl font-extrabold font-montserrat mb-8">
+                    OnePaper Research Analysts Pvt. Ltd.
+                </h2>
+                <p class="mb-6">
+                    Founded in 2020, we are a dedicated intraday stock research firm providing precise, real-time market analysis to help clients make smart, confident trading decisions. Our focus is on accuracy, speed, and continuous improvement in research capabilities.
+                </p>
+                <p class="text-pink-300 font-semibold">
+                    <a href="https://www.onepaper.in" target="_blank" class="hover:underline">www.onepaper.in</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Position Details Section -->
+        <section id="position-details" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Position Details</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="detail-card flex items-center space-x-4">
+                    <div class="icon-wrapper text-pink-300 text-3xl">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-1">Role</h4>
+                        <p class="text-gray-300">Sr.Relationship Manager</p>
+                    </div>
+                </div>
+                <div class="detail-card flex items-center space-x-4">
+                    <div class="icon-wrapper text-pink-300 text-3xl">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-1">Department</h4>
+                        <p class="text-gray-300">Sales & Client Relations</p>
+                    </div>
+                </div>
+                <!-- Removed Employment Type -->
+                <!-- Removed Experience -->
+                <div class="detail-card flex items-center space-x-4">
+                    <div class="icon-wrapper text-pink-300 text-3xl">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-1">Joining</h4>
+                        <p class="text-gray-300">Immediate</p>
+                    </div>
+                </div>
+                <div class="detail-card flex items-center space-x-4">
+                    <div class="icon-wrapper text-pink-300 text-3xl">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold mb-1">Shift Timing</h4>
+                        <p class="text-gray-300">9:00 AM – 6:00 PM</p>
+                    </div>
+                </div>
+                <!-- Removed Fixed Salary, Incentives, and CTC -->
+            </div>
+
+            <!-- Location Section -->
+            <div class="location-section mt-12 flex flex-col md:flex-row items-center justify-between p-6 rounded-xl shadow-lg">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="location-icon bg-blue-500 text-white text-3xl p-3 rounded-full shadow-lg">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-100">Our Office Location</h4>
+                        <p class="text-gray-300">Gajanana Towers, 219, 2nd Floor, 9th Cross Rd, JP Nagar, Bengaluru. 560078</p>
+                    </div>
+                </div>
+                <a href="https://maps.app.goo.gl/Zm5wSM95uysf99419" target="_blank" class="location-link bg-blue-500 text-white py-2 px-6 rounded-full flex items-center space-x-2">
+                    View on Map <i class="fas fa-external-link-alt ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Key Responsibilities Section -->
+        <section id="responsibilities" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Key Responsibilities</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-300 text-sm"> <!-- Added text-sm class here -->
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Client Acquisition: Call potential clients and generate interest in our services.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Consultative Sales: Employ a consultative selling approach to understand client needs.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Service Upselling & CRM: Upsell additional services and maintain client records in CRM.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Cross-functional Collaboration: Collaborate with marketing and research teams for client success.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Performance Targets: Consistently meet and exceed monthly Key Performance Indicators.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-check-circle text-pink-300 mt-1 text-xl"></i>
+                    <span>Client Relationship Management: Build long-term relationships by providing exceptional post-sales support and follow-ups.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Required Skills & Qualifications Section -->
+        <section id="skills" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Required Skills</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-300">
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3 detail-card">
+                        <i class="fas fa-star text-pink-300 mt-1 text-xl"></i>
+                        <span>Communication: Excellent English with 2 regional languages or Excellent English with Hindi.</span>
+                    </li>
+                    <li class="flex items-start space-x-3 detail-card">
+                        <i class="fas fa-star text-pink-300 mt-1 text-xl"></i>
+                        <span>Customer Focus: Customer-focused approach.</span>
+                    </li>
+                </ul>
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3 detail-card">
+                        <i class="fas fa-star text-pink-300 mt-1 text-xl"></i>
+                        <span>Pressure Handling: Ability to perform under pressure.</span>
+                    </li>
+                    <li class="flex items-start space-x-3 detail-card">
+                        <i class="fas fa-star text-pink-300 mt-1 text-xl"></i>
+                        <span>Problem Solving: Problem-solving mindset.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Career Path & Growth Section -->
+        <section id="career-path" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Career Growth</h2>
+            <p class="text-gray-300 mb-8">At OnePaper, we believe in recognizing talent and providing accelerated career progression for high performers.</p>
+            <div class="career-path-container-new">
+                <div class="career-path-steps-new">
+                    <div class="career-step-new animate-on-scroll">
+                        <div class="icon-wrapper"><i class="fas fa-user-graduate"></i></div>
+                        Relationship Manager
+                    </div>
+                    <div class="career-step-new animate-on-scroll">
+                        <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
+                        Senior Relationship Manager
+                    </div>
+                    <div class="career-step-new animate-on-scroll">
+                        <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+                        Team Lead
+                    </div>
+                    <div class="career-step-new animate-on-scroll">
+                        <div class="icon-wrapper"><i class="fas fa-handshake"></i></div>
+                        Regional Manager
+                    </div>
+                    <div class="career-step-new animate-on-scroll">
+                        <div class="icon-wrapper"><i class="fas fa-globe"></i></div>
+                        Director / VP of Sales
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Join OnePaper Section -->
+        <section id="why-join" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Why Join OnePaper?</h2>
+            <div class="grid md:grid-cols-2 gap-8 text-gray-300">
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-hand-holding-usd text-2xl mt-1"></i>
+                    <span>Training from NISM-certified experts.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-chart-pie text-2xl mt-1"></i>
+                    <span>High-performing incentives and rewards.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-lightbulb text-2xl mt-1"></i>
+                    <span>Energetic and collaborative team environment.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-users-cog text-2xl mt-1"></i>
+                    <span>Clear career growth path and leadership opportunities.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eligibility and Application Process Section -->
+        <section id="eligibility-apply" class="section-card mb-20 animate-on-scroll">
+            <div class="section-header-decoration w-16 h-2 rounded-full mx-auto mb-4 bg-gradient-to-r from-pink-300 to-purple-400"></div>
+            <h2 class="text-4xl font-extrabold font-montserrat mb-8">Eligibility</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-user-check text-xl mt-1"></i>
+                    <span>Graduate/Postgraduate in any discipline.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-book-reader text-xl mt-1"></i>
+                    <span>Looking for candidates with prior experience in sales or client-facing roles.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-globe-asia text-xl mt-1"></i>
+                    <span>No percentage criteria – learning mindset and sales acumen matter.</span>
+                </div>
+                <div class="flex items-start space-x-3 detail-card">
+                    <i class="fas fa-chart-line text-xl mt-1"></i>
+                    <span>Strong interest in finance, stock markets, or research is a plus.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="apply" class="cta-section relative bg-gray-800 text-white py-16 px-4 sm:px-6 lg:px-8 text-center rounded-xl shadow-2xl overflow-hidden">
+            <div class="relative z-10">
+                <h2 class="text-4xl sm:text-5xl font-extrabold font-montserrat mb-6">Ready to Make an Impact?</h2>
+                <p class="text-lg sm:text-xl text-gray-300 mb-10">
+                    Join OnePaper Research Analysts and be a part of a team that's shaping the future of financial advisory.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="mailto:hr@onepaper.in" class="email-link bg-pink-400 hover:bg-pink-500 text-gray-900 font-bold py-3 px-8 rounded-full flex items-center justify-center">
+                        <i class="fas fa-envelope mr-3"></i> Email Your Resume
+                    </a>
+                    <a href="https://wa.me/918086981567?text=I%27m%20interested%20in%20the%20Relationship%20Manager%20position." target="_blank" class="whatsapp-button bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp mr-3"></i> Connect on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10 px-4 sm:px-6 lg:px-8 text-center border-t border-gray-700">
+        <div class="max-w-7xl mx-auto">
+            <p class="mb-4">&copy; 2024 OnePaper Research Analysts. All rights reserved.</p>
+            <!-- Social media icons removed -->
+        </div>
+    </footer>
+
+    <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Three.js Scene Setup for Header Background
-        let scene; // Declared globally
-        let camera; // Declared globally
-        let renderer; // Declared globally
-        let financialGraph; // Declared globally
+        let scene, camera, renderer, financialGraph, particlesMesh;
 
         function initThreeJS() {
-            const canvas = document.getElementById('three-canvas');
-            if (!canvas) return; // Exit if canvas not found
-
             // Scene
-            scene = new THREE.Scene(); // Assign value to globally declared variable
+            scene = new THREE.Scene();
 
             // Camera
-            camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000); // Assign value
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.z = 5;
 
             // Renderer
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); // Assign value
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('three-canvas'),
+                alpha: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
 
-            // Create Financial Graph (simple bars and a line)
-            financialGraph = new THREE.Group(); // Assign value
-
-            // Bars
-            const barMaterial = new THREE.MeshBasicMaterial({ color: 0x8a2be2, transparent: true, opacity: 0.6 }); // BlueViolet
-            const numBars = 20;
-            const barWidth = 0.2;
-            const barSpacing = 0.3;
-            for (let i = 0; i < numBars; i++) {
-                const barHeight = Math.random() * 3 + 0.5; // Random height
-                const barGeometry = new THREE.BoxGeometry(barWidth, barHeight, barWidth);
-                const bar = new THREE.Mesh(barGeometry, barMaterial);
-                bar.position.x = (i - numBars / 2) * barSpacing;
-                bar.position.y = barHeight / 2 - 1.5; // Adjust position to be centered vertically
-                financialGraph.add(bar);
-            }
-
-            // Line Graph
-            const lineMaterial = new THREE.LineBasicMaterial({ color: 0xff69b4, linewidth: 2 }); // HotPink
+            // Basic Financial Graph (e.g., a simple line graph or bar chart representation)
+            const graphGeometry = new THREE.BufferGeometry();
             const points = [];
-            for (let i = 0; i < numBars; i++) {
-                const x = (i - numBars / 2) * barSpacing;
-                const y = Math.random() * 2 - 1; // Random Y for line
-                points.push(new THREE.Vector3(x, y + 0.5, 0.5)); // Slightly in front of bars
-            }
-            const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
-            const line = new THREE.Line(lineGeometry, lineMaterial);
-            financialGraph.add(line);
 
+            // Generate some random data points for a "financial graph"
+            for (let i = 0; i < 50; i++) {
+                const x = (i / 50) * 10 - 5; // X from -5 to 5
+                const y = Math.sin(i * 0.5) * 2 + Math.random() * 0.5; // Sine wave with some randomness
+                const z = Math.cos(i * 0.3) * 1; // Slight depth variation
+                points.push(new THREE.Vector3(x, y, z));
+            }
+
+            graphGeometry.setFromPoints(points);
+            const graphMaterial = new THREE.LineBasicMaterial({
+                color: 0xfbcfe8, // Pink color
+                linewidth: 2 // Line thickness
+            });
+            financialGraph = new THREE.Line(graphGeometry, graphMaterial);
             scene.add(financialGraph);
 
-            // Add subtle ambient light
-            const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
-            scene.add(ambientLight);
+            // Add some subtle particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 500;
+            const posArray = new Float32Array(particlesCount * 3);
 
-            // Add directional light
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight.position.set(1, 1, 1).normalize();
-            scene.add(directionalLight);
+            for (let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 10;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.02,
+                color: 0xa78bfa // Blue color
+            });
+
+            particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
 
             // Handle window resize
             window.addEventListener('resize', onWindowResize, false);
-
-            // Mouse interaction for camera rotation
-            let isDragging = false;
-            let previousMousePosition = { x: 0, y: 0 };
-
-            canvas.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-
-            canvas.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            canvas.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-
-                const deltaX = e.clientX - previousMousePosition.x;
-                const deltaY = e.clientY - previousMousePosition.y;
-
-                // Rotate around Y-axis for horizontal movement
-                financialGraph.rotation.y += deltaX * 0.005;
-                // Rotate around X-axis for vertical movement (limited)
-                financialGraph.rotation.x += deltaY * 0.005;
-
-                // Clamp X rotation to prevent flipping
-                financialGraph.rotation.x = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, financialGraph.rotation.x));
-
-                previousMousePosition = { x: e.clientX, y: e.clientY };
-            });
-
-            // Touch events for mobile
-            canvas.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-            });
-
-            canvas.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-
-            canvas.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault(); // Prevent scrolling
-
-                const deltaX = e.touches[0].clientX - previousMousePosition.x;
-                const deltaY = e.touches[0].clientY - previousMousePosition.y;
-
-                financialGraph.rotation.y += deltaX * 0.005;
-                financialGraph.rotation.x += deltaY * 0.005;
-
-                financialGraph.rotation.x = Math.max(-Math.PI / 4, Math.min(Math.PI / 4, financialGraph.rotation.x));
-
-                previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-            });
-
-            animateThreeJS();
+            animateThreeJS(); // Start the animation loop
         }
 
         function onWindowResize() {
-            const canvas = document.getElementById('three-canvas');
-            if (!canvas) return;
-            camera.aspect = canvas.clientWidth / canvas.clientHeight;
+            camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
         function animateThreeJS() {
@@ -900,6 +872,12 @@
             // Animate graph elements (e.g., subtle rotation)
             if (financialGraph) {
                 financialGraph.rotation.y += 0.001;
+            }
+
+            // Animate particles
+            if (particlesMesh) {
+                particlesMesh.rotation.x += 0.0005;
+                particlesMesh.rotation.y += 0.0008;
             }
 
             renderer.render(scene, camera);
